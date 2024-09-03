@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import json
+import os
 
 from flask_cors import CORS
 
@@ -76,5 +77,6 @@ def generate_report():
     response_data = handle_combined_request(prompt)
     return jsonify(response_data)
 
-if __name__ == '__main__':  # Corrected the variable name
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
