@@ -25,6 +25,9 @@ def handle_combined_request(prompt):
         response_json = json.loads(raw_response)
         print("Parsed JSON response:", response_json)
 
+        if not isinstance(response_json, dict):
+            raise ValueError("Expected JSON object, got a different format")
+
         # Extract details
         intent = response_json.get('intent', '')
         report_type = response_json.get('details', {}).get('report_type', None)
@@ -140,6 +143,7 @@ def handle_combined_request(prompt):
                 "reportFormulas": []
             }
         }
+
 
 @app.route('/generateReport', methods=['POST'])
 def generate_report():
