@@ -1,1 +1,1 @@
-web: gunicorn analyseUserPrompt:app
+gunicorn app.analyseUserPrompt:app
